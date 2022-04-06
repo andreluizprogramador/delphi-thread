@@ -89,7 +89,7 @@ begin
         end
       );
 
-      {TThread.Synchronize(nil,
+      TThread.Synchronize(nil,
         procedure
         var
           i : integer;
@@ -112,7 +112,7 @@ begin
             ProgressBar.Position := i;
           end;
         end
-      );  }
+      );
 
     end
   );

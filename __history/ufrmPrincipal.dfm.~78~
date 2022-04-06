@@ -14,11 +14,12 @@ object frmPrincipal: TfrmPrincipal
   OldCreateOrder = False
   Position = poDesktopCenter
   PrintScale = poNone
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object ProgressBar: TProgressBar
     Left = 31
-    Top = 184
+    Top = 168
     Width = 282
     Height = 17
     Max = 10
@@ -26,7 +27,7 @@ object frmPrincipal: TfrmPrincipal
   end
   object cxButton1: TcxButton
     Left = 123
-    Top = 134
+    Top = 118
     Width = 69
     Height = 23
     Cursor = crHandPoint
@@ -35,9 +36,9 @@ object frmPrincipal: TfrmPrincipal
     OnClick = cxButton1Click
   end
   object cxLabel1: TcxLabel
-    Left = 32
-    Top = 24
-    Caption = 'Iniciar Contagem'
+    Left = 31
+    Top = 16
+    Caption = 'Iniciar Contagem com Thread'
     ParentFont = False
     Style.Font.Charset = DEFAULT_CHARSET
     Style.Font.Color = 3026478
@@ -62,21 +63,24 @@ object frmPrincipal: TfrmPrincipal
   end
   object spinTempo: TcxSpinEdit
     Left = 31
-    Top = 79
+    Top = 63
+    Properties.MaxValue = 1000.000000000000000000
     Properties.MinValue = 1.000000000000000000
+    Properties.ReadOnly = False
     TabOrder = 4
     Value = 1
-    Width = 66
+    Width = 72
   end
   object cxLabel2: TcxLabel
-    Left = 32
-    Top = 56
-    Caption = 'Segundos'
+    Left = 31
+    Top = 46
+    Caption = 'Load 1 a 1000'
     Visible = False
   end
   object cmbVelocidade: TcxComboBox
     Left = 31
-    Top = 135
+    Top = 119
+    Properties.DropDownListStyle = lsEditFixedList
     Properties.Items.Strings = (
       '1x'
       '2x'
@@ -84,25 +88,27 @@ object frmPrincipal: TfrmPrincipal
       '5x'
       '10x'
       '50x')
+    Properties.ReadOnly = False
     TabOrder = 6
     Text = '1x'
-    Width = 66
+    Width = 72
   end
   object cxLabel3: TcxLabel
-    Left = 31
-    Top = 112
+    Left = 30
+    Top = 102
     Caption = 'Velocidade'
     Visible = False
   end
-  object cxClock1: TcxClock
+  object Relogio: TcxClock
     Left = 219
-    Top = 79
+    Top = 63
     Width = 78
     Height = 78
   end
   object cxComboBox1: TcxComboBox
     Left = 123
-    Top = 79
+    Top = 63
+    Properties.DropDownListStyle = lsFixedList
     Properties.Items.Strings = (
       '1x'
       '2x'
@@ -110,20 +116,78 @@ object frmPrincipal: TfrmPrincipal
       '5x'
       '10x'
       '50x')
+    Properties.ReadOnly = False
     TabOrder = 9
     Text = '1x'
     Width = 69
   end
   object cxLabel4: TcxLabel
     Left = 123
-    Top = 56
+    Top = 46
     Caption = 'Tipo Progress'
     Visible = False
   end
   object cxLabel5: TcxLabel
     Left = 219
-    Top = 56
+    Top = 46
     Caption = 'Tempo Decorrido'
     Visible = False
+  end
+  object lblCLock: TcxLabel
+    Left = 228
+    Top = 142
+    Caption = '00:00:00'
+    ParentFont = False
+    Style.Font.Charset = DEFAULT_CHARSET
+    Style.Font.Color = 3026478
+    Style.Font.Height = -13
+    Style.Font.Name = 'Tahoma'
+    Style.Font.Style = []
+    Style.TextStyle = [fsBold]
+    Style.IsFontAssigned = True
+  end
+  object cxLabel6: TcxLabel
+    Left = 28
+    Top = 184
+    Caption = '1 ...'
+    ParentFont = False
+    Style.Font.Charset = DEFAULT_CHARSET
+    Style.Font.Color = clTeal
+    Style.Font.Height = -11
+    Style.Font.Name = 'Tahoma'
+    Style.Font.Style = []
+    Style.TextColor = cl3DDkShadow
+    Style.IsFontAssigned = True
+  end
+  object cxLabel7: TcxLabel
+    Left = 273
+    Top = 184
+    Caption = '... 1000'
+    ParentFont = False
+    Style.Font.Charset = DEFAULT_CHARSET
+    Style.Font.Color = clTeal
+    Style.Font.Height = -11
+    Style.Font.Name = 'Tahoma'
+    Style.Font.Style = []
+    Style.TextColor = cl3DDkShadow
+    Style.IsFontAssigned = True
+  end
+  object cxLabel8: TcxLabel
+    Left = 30
+    Top = 152
+    Caption = 'Load Bar'
+    ParentFont = False
+    Style.Font.Charset = DEFAULT_CHARSET
+    Style.Font.Color = clTeal
+    Style.Font.Height = -11
+    Style.Font.Name = 'Tahoma'
+    Style.Font.Style = []
+    Style.TextColor = clDefault
+    Style.IsFontAssigned = True
+  end
+  object sTimer: TTimer
+    OnTimer = sTimerTimer
+    Left = 304
+    Top = 8
   end
 end

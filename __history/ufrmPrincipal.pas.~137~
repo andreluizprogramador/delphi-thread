@@ -13,7 +13,7 @@ uses
 type
   TfrmPrincipal = class(TForm)
     ProgressBar: TProgressBar;
-    btnStart: TcxButton;
+    BTNsTART: TcxButton;
     cxLabel1: TcxLabel;
     lblFinalizado: TcxLabel;
     spinTempo: TcxSpinEdit;
@@ -29,10 +29,8 @@ type
     cxLabel6: TcxLabel;
     cxLabel7: TcxLabel;
     cxLabel8: TcxLabel;
-    btnCancelar: TcxButton;
-    procedure btnStartClick(Sender: TObject);
+    procedure BTNsTARTClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure btnCancelarClick(Sender: TObject);
   private
     MinhaThread : TThread;
     tempoExecucao : TDateTime;
@@ -60,17 +58,12 @@ end;
 
 procedure TfrmPrincipal.incTempoExecucao(Sender: TObject);
 begin
-  tempoExecucao := incSecond(tempoExecucao, 1);
+  tempoExecucao := incSecond(tempoExecucao, 10);
   Relogio.Time := StrToDateTime(FormatDateTime('HH:mm:ss', tempoExecucao));;
   lblCLock.Caption := FormatDateTime('HH:mm:ss', tempoExecucao);
 end;
 
-procedure TfrmPrincipal.btnCancelarClick(Sender: TObject);
-begin
-  MinhaThread.Terminate;
-end;
-
-procedure TfrmPrincipal.btnStartClick(Sender: TObject);
+procedure TfrmPrincipal.BTNsTARTClick(Sender: TObject);
 begin
   lblFinalizado.Visible := false;
   ProgressBar.Max       := spinTempo.Value;
@@ -89,7 +82,7 @@ begin
         end
       );
 
-      {TThread.Synchronize(nil,
+      TThread.Queue(nil,
         procedure
         var
           i : integer;
@@ -108,11 +101,10 @@ begin
 //              8 : sleep(Round(1000/500));
 //              9 : sleep(Round(1000/1000));
 //            end;
-            sleep(Round(1));
             ProgressBar.Position := i;
           end;
         end
-      );  }
+      );
 
     end
   );

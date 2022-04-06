@@ -89,7 +89,7 @@ begin
         end
       );
 
-      {TThread.Synchronize(nil,
+      TThread.Synchronize(nil,
         procedure
         var
           i : integer;
@@ -108,11 +108,11 @@ begin
 //              8 : sleep(Round(1000/500));
 //              9 : sleep(Round(1000/1000));
 //            end;
-            sleep(Round(1));
+            sleep(Round(1000));
             ProgressBar.Position := i;
           end;
         end
-      );  }
+      );
 
     end
   );

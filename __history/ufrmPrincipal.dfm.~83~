@@ -25,7 +25,7 @@ object frmPrincipal: TfrmPrincipal
     Max = 10
     TabOrder = 0
   end
-  object btnStart: TcxButton
+  object BTNsTART: TcxButton
     Left = 123
     Top = 118
     Width = 69
@@ -33,7 +33,7 @@ object frmPrincipal: TfrmPrincipal
     Cursor = crHandPoint
     Caption = 'Start'
     TabOrder = 1
-    OnClick = btnStartClick
+    OnClick = BTNsTARTClick
   end
   object cxLabel1: TcxLabel
     Left = 31
@@ -188,16 +188,6 @@ object frmPrincipal: TfrmPrincipal
     Style.Font.Style = []
     Style.TextColor = clDefault
     Style.IsFontAssigned = True
-  end
-  object btnCancelar: TcxButton
-    Left = 244
-    Top = 207
-    Width = 69
-    Height = 23
-    Cursor = crHandPoint
-    Caption = 'Cancelar'
-    TabOrder = 16
-    OnClick = btnCancelarClick
   end
   object sTimer: TTimer
     Left = 304
