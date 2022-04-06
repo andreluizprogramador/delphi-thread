@@ -2,8 +2,8 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2021/12/01 20:03:15.000.618,=D:\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2021/12/01 20:05:57.000.650,D:\PROJETOSDELPHI\THREADS\ufrmPrincipal.pas=D:\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2021/12/01 20:05:57.000.650,D:\PROJETOSDELPHI\THREADS\ufrmPrincipal.dfm=D:\Documentos\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>2021/12/01 20:06:21.000.697,D:\PROJETOSDELPHI\THREADS\THREADS.dproj=D:\Documentos\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2021/12/01 20:05:57.000.650,D:\Documentos\Embarcadero\Studio\Projects\Unit1.dfm=D:\PROJETOSDELPHI\THREADS\ufrmPrincipal.dfm</Transaction>
+    <Transaction>2021/12/01 20:05:57.000.650,D:\Documentos\Embarcadero\Studio\Projects\Unit1.pas=D:\PROJETOSDELPHI\THREADS\ufrmPrincipal.pas</Transaction>
+    <Transaction>2021/12/01 20:06:21.000.697,D:\Documentos\Embarcadero\Studio\Projects\Project1.dproj=D:\PROJETOSDELPHI\THREADS\THREADS.dproj</Transaction>
   </Transactions>
 </BorlandProject>

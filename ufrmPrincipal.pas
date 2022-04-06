@@ -8,7 +8,21 @@ uses
   cxClasses, cxLookAndFeels, dxSkinsForm, Vcl.ComCtrls, cxGraphics,
   cxLookAndFeelPainters, Vcl.Menus, cxControls, cxContainer, cxEdit, cxLabel,
   Vcl.StdCtrls, cxButtons, cxTextEdit, cxCurrencyEdit, Vcl.ExtCtrls, cxMaskEdit,
-  cxSpinEdit, cxDropDownEdit, cxCalendar, DateUtils;
+  cxSpinEdit, cxDropDownEdit, cxCalendar, DateUtils, dxSkinBlack, dxSkinBlue,
+  dxSkinBlueprint, dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom, dxSkinDarkSide,
+  dxSkinDevExpressDarkStyle, dxSkinDevExpressStyle, dxSkinFoggy,
+  dxSkinGlassOceans, dxSkinHighContrast, dxSkiniMaginary, dxSkinLilian,
+  dxSkinLiquidSky, dxSkinLondonLiquidSky, dxSkinMcSkin, dxSkinMetropolis,
+  dxSkinMetropolisDark, dxSkinMoneyTwins, dxSkinOffice2007Black,
+  dxSkinOffice2007Blue, dxSkinOffice2007Green, dxSkinOffice2007Pink,
+  dxSkinOffice2007Silver, dxSkinOffice2010Black, dxSkinOffice2010Blue,
+  dxSkinOffice2010Silver, dxSkinOffice2013DarkGray, dxSkinOffice2013LightGray,
+  dxSkinOffice2013White, dxSkinOffice2016Colorful, dxSkinOffice2016Dark,
+  dxSkinPumpkin, dxSkinSeven, dxSkinSevenClassic, dxSkinSharp, dxSkinSharpPlus,
+  dxSkinSilver, dxSkinSpringTime, dxSkinStardust, dxSkinSummer2008,
+  dxSkinTheAsphaltWorld, dxSkinValentine, dxSkinVisualStudio2013Blue,
+  dxSkinVisualStudio2013Dark, dxSkinVisualStudio2013Light, dxSkinVS2010,
+  dxSkinWhiteprint, dxSkinXmas2008Blue;
 
 type
   TfrmPrincipal = class(TForm)
@@ -34,10 +48,11 @@ type
     procedure FormShow(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
   private
-    MinhaThread : TThread;
+    MinhaThread, RelogioThread : TThread;
     tempoExecucao : TDateTime;
     ExecutaRelogio : TTimer;
-    procedure Termino(Sender: TObject);
+    procedure TerminoPrincipal(Sender: TObject);
+    procedure TerminoRelogio(Sender: TObject);
     procedure incTempoExecucao(Sender: TObject);
   public
     { Public declarations }
@@ -68,6 +83,7 @@ end;
 procedure TfrmPrincipal.btnCancelarClick(Sender: TObject);
 begin
   MinhaThread.Terminate;
+  RelogioThread.Terminate;
 end;
 
 procedure TfrmPrincipal.btnStartClick(Sender: TObject);
@@ -76,7 +92,7 @@ begin
   ProgressBar.Max       := spinTempo.Value;
   ProgressBar.Position  := 0;
 
-  MinhaThread := TThread.CreateAnonymousThread(
+  RelogioThread := TThread.CreateAnonymousThread(
     procedure
     begin
 
@@ -88,6 +104,20 @@ begin
           ExecutaRelogio.Enabled := true;
         end
       );
+
+      ExecutaRelogio := TTimer.Create(nil);
+      ExecutaRelogio.OnTimer         := incTempoExecucao;
+      ExecutaRelogio.Enabled         := true;
+    end
+  );
+
+  RelogioThread.FreeOnTerminate      := true;
+  RelogioThread.OnTerminate          := TerminoRelogio;
+  RelogioThread.Start;
+
+  MinhaThread := TThread.CreateAnonymousThread(
+    procedure
+    begin
 
       {TThread.Synchronize(nil,
         procedure
@@ -112,7 +142,7 @@ begin
             ProgressBar.Position := i;
           end;
         end
-      );  }
+      );}
 
     end
   );
@@ -122,18 +152,23 @@ begin
   sTimer.Enabled               := true;
 
   MinhaThread.FreeOnTerminate  := true;
-  MinhaThread.OnTerminate      := Termino;
+  MinhaThread.OnTerminate      := TerminoPrincipal;
   MinhaThread.Start;
 end;
 
-procedure TfrmPrincipal.Termino(Sender: TObject);
+procedure TfrmPrincipal.TerminoPrincipal(Sender: TObject);
 begin
-  lblFinalizado.Visible := true;
-  ExecutaRelogio.Enabled := true;
-  sTimer.Enabled := false;
-  tempoExecucao := StrToDateTime(FormatDateTime('HH:mm:ss', StrToTime('00:00:00')));
-  Relogio.Time := tempoExecucao;
-  lblCLock.Caption := '00:00:00';
+  lblFinalizado.Visible        := true;
+  ProgressBar.Position         := 0;
+end;
+
+procedure TfrmPrincipal.TerminoRelogio(Sender: TObject);
+begin
+  ExecutaRelogio.Enabled       := true;
+  sTimer.Enabled               := false;
+  tempoExecucao                := StrToDateTime(FormatDateTime('HH:mm:ss', StrToTime('00:00:00')));
+  Relogio.Time                 := tempoExecucao;
+  lblCLock.Caption             := '00:00:00';
 end;
 
 end.
